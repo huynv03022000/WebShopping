@@ -17,7 +17,6 @@ public class Product {
     private float price;
     private String describer;
     String img ;
- 
     private boolean status;
        private int quantity;
 //    private int quantity;

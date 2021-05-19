@@ -228,9 +228,6 @@ public final class Home_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    </body>\n");
       out.write("</html>\n");
       out.write("\n");
-      out.write("\n");
-      out.write("\n");
-      out.write("\n");
       out.write("        <header>\n");
       out.write("            <div id=\"carouselExampleIndicators\" class=\"carousel slide container\" data-ride=\"carousel\">\n");
       out.write("                <ol class=\"carousel-indicators\">\n");

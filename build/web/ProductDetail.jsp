@@ -90,7 +90,7 @@
                     </div>
                     <div class="col-md-6">
 
-                        <h5>${requestScope.product.name}</h5>
+                        <h2>${requestScope.product.name}</h2>
                         <p class="mb-2 text-muted text-uppercase small">Shirts</p>
 
                         <p><span class="mr-1"><strong>${requestScope.product.price}</strong></span></p>
@@ -211,8 +211,8 @@
 
                                         <button type="" style=" background-color: #ccc;
                                                 height: 50px;" class="btn btn-normal pull-right"><input type="submit" value="Submit"></button>
-                                                <fieldset>
-                                                    <div class="row">
+                                        <fieldset>
+                                            <div class="row">
                                                 <div class="col-sm-3 col-lg-2 hidden-xs">
                                                     <img class="img-responsive" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
                                                 </div>
@@ -257,6 +257,49 @@
                 </section>
             </div>
 
+        </div>
+                                  <hr>
+                <hr>
+                <h1 style="margin-left: 40%">Sản Phẩm Liên Quan</h1>
+                <hr>
+                <hr>
+        <div class="container">
+            <div class="row">
+              
+                <c:forEach items="${list1}" var="o">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="product-grid3">
+                            <div class="product-image3">
+                                <a href="detail?id=${o.id}&&categori=${o.CID}">
+                                    <img class="pic-1"src="${o.img}" alt=""/>
+                                    <img class="pic-2" src="${o.img}" alt=""/>
+                                </a>
+                                <ul class="social">
+                                    <li><a href="detail?id=${o.id}&&categori=${o.CID}"><i class="fa fa-shopping-bag"></i></a></li>
+                                    <li><a href="detail?id=${o.id}&&categori=${o.CID}"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                                <span class="product-new-label">${o.id}</span>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="title"><a href="#">${o.name}</a></h3>
+                                <div class="price">
+                                    ${o.price}
+                                    <span>${o.price*1.2} VND</span>
+                                </div>
+                                <ul class="rating">
+                                    <li class="fa fa-star"></li>
+                                    <li class="fa fa-star"></li>
+                                    <li class="fa fa-star"></li>
+                                    <li class="fa fa-star disable"></li>
+                                    <li class="fa fa-star disable"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>  
+                </c:forEach>
+
+
+            </div>
         </div>
         <!-- Classic tabs -->
         <%@include file="footer.jsp"%>

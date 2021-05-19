@@ -49,8 +49,8 @@ public class ProductDAO extends DBContext {
         }
         return list;
     }
-    
-      public List<CommentProduct> getComment(String pid) {
+
+    public List<CommentProduct> getComment(String pid) {
         List<CommentProduct> list = new ArrayList<>();
         String sql = "Select * from Comment where pid =?";
         try {
@@ -64,28 +64,31 @@ public class ProductDAO extends DBContext {
                 p.setPid(rs.getString("pid"));
                 p.setDate(rs.getString("date"));
                 p.setContent(rs.getString("content"));
-              p.setLike(rs.getInt("like"));
+                p.setLike(rs.getInt("like"));
                 list.add(p);
             }
         } catch (Exception e) {
         }
         return list;
     }
- public boolean checkComment(String pid ,String user) {
-      
+
+    public boolean checkComment(String pid, String user) {
+
         String sql = "select * from [Order] c INNER JOIN OrderLine o on c.id = o.oid inner join Customer cu on cu.username = c.username where cu.username = ? and o.pid = ? and c.status ='false'";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, user);
             st.setString(2, pid);
-           ResultSet rs=st.executeQuery();
-            if(rs.next())
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
                 return true;
-        }catch(SQLException e){
+            }
+        } catch (SQLException e) {
             System.out.println(e);
         }
         return false;
     }
+
     public Categories getCateByID(String id) {
         String query = "select * from Categories where categoriesId = ?";
         try {
@@ -266,23 +269,22 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
-    public Product getProductByID(int id) {
-        String sql = "select * from Product where productid=?";
-        try {
-            PreparedStatement st = connection.prepareStatement(sql);
-            st.setInt(1, id);
-            ResultSet rs = st.executeQuery();
-            if (rs.next()) {
-                return new Product(id, rs.getString("productIdType"),
-                        rs.getInt("categoriesId"), rs.getString("productName"), rs.getFloat("price"), rs.getString("Description"), rs.getString("image"), rs.getBoolean("status"), rs.getInt("quantity"));
-            }
-
-        } catch (SQLException e) {
-            System.out.println(e);
-        }
-        return null;
-    }
-
+//    public Product getProductByID(int id) {
+//        String sql = "select * from Product where productid=?";
+//        try {
+//            PreparedStatement st = connection.prepareStatement(sql);
+//            st.setInt(1, id);
+//            ResultSet rs = st.executeQuery();
+//            if (rs.next()) {
+//                return new Product(id, rs.getString("productIdType"),
+//                        rs.getInt("categoriesId"), rs.getString("productName"), rs.getFloat("price"), rs.getString("Description"), rs.getString("image"), rs.getBoolean("status"), rs.getInt("quantity"));
+//            }
+//
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//        }
+//        return null;
+//    }
     public void insertProduct(Product p, Color c, Image i) {
         try {
             //add vào bảng Order
@@ -290,45 +292,212 @@ public class ProductDAO extends DBContext {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, p.getPID());
             st.setInt(2, p.getCID());
-            st.setString(3,p.getName());
-            st.setFloat(4,p.getPrice());
-            st.setString(5,p.getDescriber());
-            st.setString(6,p.getImg());
-            st.setBoolean(7,p.isStatus());
-            st.setInt(8,p.getQuantity());
+            st.setString(3, p.getName());
+            st.setFloat(4, p.getPrice());
+            st.setString(5, p.getDescriber());
+            st.setString(6, p.getImg());
+            st.setBoolean(7, p.isStatus());
+            st.setInt(8, p.getQuantity());
             st.executeUpdate();
             //lấy ra id của Order vừa add
             String sql1 = "select top 1 productId from [Product] order by productid desc";
             PreparedStatement st1 = connection.prepareStatement(sql1);
             ResultSet rs = st1.executeQuery();
             //add vào bảng OrderLine
-             int oid =0;
+            int oid = 0;
             if (rs.next()) {
-               oid = rs.getInt(1);
-                String sql2="insert into Color values(?,?,?,?,?,?)";
-                PreparedStatement st2=connection.prepareStatement(sql2);
+                oid = rs.getInt(1);
+                String sql2 = "insert into Color values(?,?,?,?,?,?)";
+                PreparedStatement st2 = connection.prepareStatement(sql2);
                 st2.setInt(1, oid);
                 st2.setString(2, c.getColor1());
                 st2.setString(3, c.getColor2());
                 st2.setString(4, c.getColor3());
                 st2.setString(5, c.getColor4());
-                st2.setString(6, c.getColor5());               
+                st2.setString(6, c.getColor5());
                 st2.executeUpdate();
-                String sql3="insert into Image values(?,?,?,?,?,?,?)";
-                PreparedStatement st3=connection.prepareStatement(sql3);
+                String sql3 = "insert into Image values(?,?,?,?,?,?,?)";
+                PreparedStatement st3 = connection.prepareStatement(sql3);
                 st3.setInt(1, oid);
                 st3.setString(2, i.getImg1());
-                st3.setString(3,  i.getImg2());
+                st3.setString(3, i.getImg2());
                 st3.setString(4, i.getImg3());
-                st3.setString(5,  i.getImg4());
-                st3.setString(6, i.getImg5());               
-                st3.setString(7, i.getImg6());               
+                st3.setString(5, i.getImg4());
+                st3.setString(6, i.getImg5());
+                st3.setString(7, i.getImg6());
                 st3.executeUpdate();
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
 
+    }
+
+    public List<Product> searchProduct(String search) {
+        List<Product> list = new ArrayList<>();
+        String sql = "Select * from Product where productName like ? ";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, "%" + search + "%");
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setId(rs.getInt("productId"));
+                p.setPID(rs.getString("productIdType"));
+                p.setCID(rs.getInt("categoriesId"));
+                p.setName(rs.getString("productName"));
+                p.setImg(rs.getString("image"));
+                p.setPrice(rs.getFloat("price"));
+                p.setDescriber(rs.getString("Description"));
+                p.setStatus(rs.getBoolean("status"));
+                p.setQuantity(rs.getInt("quantity"));
+                list.add(p);
+            }
+        } catch (Exception e) {
+        }
+        return list;
+
+    }
+
+    public Image getImageById(String id) {
+        String query = "select * from Image where productId =?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Image(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public Color getColorById(String id) {
+        String query = "select * from Color where productId =?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return new Color(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+   
+    public void UpdateProduct(Product p) {
+        String query = "UPDATE Product\n"
+                + "   SET [productIdType] = ?\n"
+                + "      ,[categoriesId] = ?\n"
+                + "      ,[productName] = ?\n"
+                + "      ,[price] = ?\n"
+                + "      ,[Description] = ?\n"
+                + "      ,[image] = ?\n"
+                + "      ,[status] = ?\n"
+                + "      ,[quantity] = ?\n"
+                + " WHERE productId = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, p.getPID());
+            ps.setInt(2, p.getCID());
+            ps.setString(3, p.getName());
+            ps.setFloat(4, p.getPrice());
+            ps.setString(5, p.getDescriber());
+            ps.setString(6, p.getImg());
+            ps.setBoolean(7, p.isStatus());
+            ps.setInt(8, p.getQuantity());
+            ps.setInt(9, p.getId());
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public void UpdateImage(Image img, int id) {
+        String query2 = "UPDATE Image SET [img1] = ? ,[img2] = ?,[img3] = ?   ,[img4] = ?,[img5] = ? ,[img6] = ? WHERE productId = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query2);
+            ps.setString(1, img.getImg1());
+            ps.setString(2, img.getImg2());
+            ps.setString(3, img.getImg3());
+            ps.setString(4, img.getImg4());
+            ps.setString(5, img.getImg5());
+            ps.setString(6, img.getImg6());
+            ps.setInt(7, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public void UpdateColor(Color c, int id) {
+        String query1 = "UPDATE Color\n"
+                + "   SET [color1] = ? ,[color2] = ? ,[color3] = ? ,[color4] = ? ,[color5] = ? WHERE productid = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query1);
+            ps.setString(1, c.getColor1());
+            ps.setString(2, c.getColor2());
+            ps.setString(3, c.getColor3());
+            ps.setString(4, c.getColor4());
+            ps.setString(5, c.getColor5());
+            ps.setInt(6, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public void deleteProduct(String id) {
+          String sql1 = "delete from Color where productid = ? ";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql1);
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+         String sql2 = "delete from Image where productId = ? ";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql2);
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+         String sql = "delete from Product where productId = ? ";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+       
+    }
+
+    public String getNameOfcate(String categori) {
+         String query = "select categoriesName from Categories where categoriesId = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, categori);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getString("categoriesName");
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    public int getMaxID() {
+         String query = "SELECT MAX(productId) FROM Product; ";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+           
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
     }
 
 }

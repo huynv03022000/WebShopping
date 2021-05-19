@@ -60,8 +60,17 @@ public class Huydon extends HttpServlet {
       String oid = request.getParameter("oid");
       String pid = request.getParameter("pid");
         OrderDAO dao = new OrderDAO();
-        dao.deleteOrderLine(oid,pid);
-        
+       
+        int price = dao.getPriceDelete(pid,oid);
+         dao.deleteOrderLine(oid,pid);
+          int priceOrder = dao.getPriceOrder(oid);
+          int result = priceOrder-price;
+       if(result>0){
+           dao.updateOrder(result,oid);
+       }else{
+             dao.deleteOrder(oid);
+       }
+        request.getRequestDispatcher("addCart").forward(request, response);
     }
 
     /**
@@ -87,5 +96,7 @@ public class Huydon extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+   
 
 }

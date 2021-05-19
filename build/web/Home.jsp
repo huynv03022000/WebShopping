@@ -23,9 +23,6 @@
     </head>
     <body>
         <%@include file="header.jsp"%>
-
-
-
         <header>
             <div id="carouselExampleIndicators" class="carousel slide container" data-ride="carousel">
                 <ol class="carousel-indicators">

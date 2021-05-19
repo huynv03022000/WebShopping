@@ -27,26 +27,31 @@
     <body>
         <%@include file="header.jsp"%>
         <style>
-            img{
+            .product-grid3 .product-image3 img{
                 border-radius: 20px; 
+                width: 280px;
+                height: 280px;
+            }
+            .col-sm-3{
+                margin-bottom: 50px;
             }
         </style>
-        <div class="container-fluid">
+        <div class="container">
             <hr>
             <h3 style="margin-left: 45%;font-size: 40px" class="h3">  ${requestScope.Mes} </h3>
             <div class="row">
 
                 <c:forEach items="${list}" var="o">
-                    <div class="col col-sm-2">
+                    <div class="col col-sm-3">
                         <div class="product-grid3">
                             <div class="product-image3">
-                                <a href="detail?id=${o.id}">
+                                <a href="detail?id=${o.id}&&categori=${o.CID}">
                                     <img class="pic-1"src="${o.img}" alt=""/>
                                     <img class="pic-2" src="${o.img}" alt=""/>
                                 </a>
                                 <ul class="social">
-                                    <li><a href="detail?id=${o.id}"><i class="fa fa-shopping-bag"></i></a></li>
-                                    <li><a href="detail?id=${o.id}"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="detail?id=${o.id}&&categori=${o.CID}"><i class="fa fa-shopping-bag"></i></a></li>
+                                    <li><a href="detail?id=${o.id}&&categori=${o.CID}"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                                 <span class="product-new-label">${o.id}</span>
                             </div>

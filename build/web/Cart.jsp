@@ -187,7 +187,7 @@
 
                                                     <div class="cart_item_name cart_info_col">
                                                         <div class="cart_item_title">Price</div>
-                                                        <div class="cart_item_text">${i.price}VND</div>
+                                                        <div class="cart_item_text">${i.price} VND</div>
                                                     </div>
                                                     <div class="cart_item_color cart_info_col">
                                                         <div class="cart_item_title">Name</div>
@@ -203,24 +203,23 @@
                                                         <div class="cart_item_text">
                                                             ${i.size}</div>
                                                     </div>
+                                                    <div class="cart_item_color cart_info_col">
+                                                        <div class="cart_item_title">Quantity</div>
+                                                        <div class="cart_item_text">
+                                                            ${i.quantity}</div>
+                                                    </div>
                                                     <div class="cart_item_price cart_info_col">
                                                         <div class="cart_item_title">Ảnh Miêu Tả</div>
                                                         <img style="height: 100px;width: 100px" src="${i.img}">
                                                     </div>
+
                                                     <div class="cart_item_color cart_info_col">
                                                         <c:if test="${i.status ==false}">
-                                                            <div class="cart_item_title"><h3>Đang giao</h3></div>
+                                                            <div class="cart_item_title"><h3><a href="xacnhan?pid=${i.pid}&&oid=${i.oid}" >Xác nhận đã nhận </a></h3></div>
+
                                                         </c:if>
                                                         <c:if test="${i.status ==true}">
-                                                            <div class="cart_item_title"><h3>Chưa giao</h3></div>
-                                                        </c:if>
-                                                    </div>
-                                                     <div class="cart_item_color cart_info_col">
-                                                        <c:if test="${i.status ==false}">
-                                                            <div class="cart_item_title"><h3><a href="huydon?pid=${o.pid}&&oid=${o.oid}" >Xác nhận đã nhận </a></h3></div>
-                                                        </c:if>
-                                                        <c:if test="${i.status ==true}">
-                                                            <div class="cart_item_title"><h3>Hủy Đơn</h3></div>
+                                                            <div class="cart_item_title"><h3  onclick="doDelete('${i.pid}', '${i.oid}')">Hủy Đơn</h3></div>
                                                         </c:if>
                                                     </div>
 
@@ -331,10 +330,15 @@
         <script src="JS/bootstrap.min.js" type="text/javascript"></script>
         <script src="JS/customjs.js" type="text/javascript"></script>
         <script>
-                                    function Order() {
-                                        document.getElementById("order").style.display = "block";
+                                                                function Order() {
+                                                                    document.getElementById("order").style.display = "block";
 
-                                    }
+                                                                }
+                                                                function doDelete(pid, oid) {
+                                                                    if (confirm("Bạn Có chắc chán muốn hủy đơn ")) {
+                                                                        window.location = "huydon?pid=" + pid + "&&oid=" + oid;
+                                                                    }
+                                                                }
         </script>
     </body>
 </html>

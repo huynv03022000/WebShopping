@@ -85,7 +85,7 @@ public class ProcessOrder extends HttpServlet {
                 cart.removeItem(id);
             } else {
                ProductDAO pdb=new ProductDAO();
-               Product p=pdb.getProductByID(id);
+               Product p=pdb.getProductById(tid);
                double price=p.getPrice();
                Item t=new Item(p,num,color,size, price);  
                cart.addItem(t);

@@ -85,6 +85,31 @@ public class ProductDetail extends HttpServlet {
 //        Modal.ProductDetail pt= dao.getPRoductDetail(p.getId());  
         Image listImg = dao.getListImg(p.getId());
          Color color = dao.getListColor(p.getId());
+         
+           String categori = request.getParameter("categori");
+        int cate = Integer.parseInt(categori);
+        List<Product> list1 = dao.getData(cate);
+        int numPs = list1.size();
+        int numperPage = 8;
+        int numpage = numPs / numperPage + (numPs % numperPage == 0 ? 0 : 1);
+        int start, end;
+        String tpage = request.getParameter("page");
+        int page;
+        try {
+            page = Integer.parseInt(tpage);
+        } catch (NumberFormatException e) {
+            page = 1;
+        }
+        start = (page - 1) * numperPage;
+        if (page * numperPage > numPs) {
+            end = numPs;
+        } else {
+            end = page * numperPage;
+        }
+        List<Product> arr = dao.getListByPage(list1, start, end);
+        //so phan tu cua 1 trang
+        request.setAttribute("list1", arr);
+         
          request.setAttribute("product", p);
 //         request.setAttribute("productdetail", pt);
          request.setAttribute("img", listImg);
@@ -94,6 +119,7 @@ public class ProductDetail extends HttpServlet {
          request.setAttribute("id", id);
          request.setAttribute("check", check);
            request.setAttribute("username", username);
+        
          request.setAttribute("mes",mes );
           request.getRequestDispatcher("ProductDetail.jsp").
                 forward(request, response);
@@ -127,3 +153,26 @@ public class ProductDetail extends HttpServlet {
     }// </editor-fold>
 
 }
+//  String categori = request.getParameter("categori");
+//        int cate = Integer.parseInt(categori);
+//        List<Product> list1 = dao.getData(cate);
+//        int numPs = list1.size();
+//        int numperPage = 8;
+//        int numpage = numPs / numperPage + (numPs % numperPage == 0 ? 0 : 1);
+//        int start, end;
+//        String tpage = request.getParameter("page");
+//        int page;
+//        try {
+//            page = Integer.parseInt(tpage);
+//        } catch (NumberFormatException e) {
+//            page = 1;
+//        }
+//        start = (page - 1) * numperPage;
+//        if (page * numperPage > numPs) {
+//            end = numPs;
+//        } else {
+//            end = page * numperPage;
+//        }
+//        List<Product> arr = dao.getListByPage(list1, start, end);
+//        //so phan tu cua 1 trang
+//        request.setAttribute("list", arr);

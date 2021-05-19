@@ -86,6 +86,7 @@ public class addCart extends HttpServlet {
         } else {
             cart = new Cart();
         }
+        
         OrderDAO dao = new OrderDAO();
         List<OrderDetail> listOrder = dao.getListOrder(username);
         double total = cart.getTotalMoney();

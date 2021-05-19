@@ -47,13 +47,13 @@ public class OrderDAO extends DBContext {
             if (rs.next()) {
                 int oid = rs.getInt(1);
                 for (Item i : cart.getItems()) {
-                    String sql2 = "insert into [orderline] values(?,?,?,?,?,?)";
+                    String sql2 = "insert into [Orderline] values(?,?,?,?,?,?)";
                     PreparedStatement st2 = connection.prepareStatement(sql2);
                     st2.setInt(1, oid);
                     st2.setInt(2, i.getProduct().getId());
                     st2.setInt(3, i.getQuantity());
                     st2.setDouble(4, i.getPrice());
-                     st2.setString(5, i.getColor());
+                    st2.setString(5, i.getColor());
                     st2.setString(6, i.getSize());
                     st2.executeUpdate();
                 }
@@ -98,7 +98,8 @@ public class OrderDAO extends DBContext {
         }
         return list;
     }
- public List<CommentProduct> getComment(String pid , String user) {
+
+    public List<CommentProduct> getComment(String pid, String user) {
         List<CommentProduct> list = new ArrayList<>();
         String sql = "select cm.id ,cm.username,cm.pid,cm.date,cm.content,cm.[like] from Comment cm where cm.username =? and cm.pid =?";
         try {
@@ -113,16 +114,17 @@ public class OrderDAO extends DBContext {
                 p.setPid(rs.getString("pid"));
                 p.setDate(rs.getString("date"));
                 p.setContent(rs.getString("content"));
-              p.setLike(rs.getInt("like"));
+                p.setLike(rs.getInt("like"));
                 list.add(p);
             }
         } catch (Exception e) {
         }
         return list;
     }
+
     public List<OrderDetail> getOrderDetail(String id) {
         List<OrderDetail> list = new ArrayList<>();
-        String sql = "SELECT o.oid,o.price,o.color,o.size,p.image,p.productName\n"
+        String sql = "SELECT o.oid,o.quantity,o.price,o.color,o.size,p.image,p.productName\n"
                 + "FROM OrderLine o\n"
                 + "INNER JOIN Product p ON o.pid = p.productId where o.oid = ?";
         try {
@@ -132,6 +134,7 @@ public class OrderDAO extends DBContext {
             while (rs.next()) {
                 OrderDetail p = new OrderDetail();
                 p.setOid(rs.getInt("oid"));
+                p.setQuantity(rs.getInt("quantity"));
                 p.setPrice(rs.getFloat("price"));
                 p.setColor(rs.getString("color"));
                 p.setSize(rs.getString("size"));
@@ -157,18 +160,19 @@ public class OrderDAO extends DBContext {
     }
 
     public List<OrderDetail> getListOrder(String username) {
-          List<OrderDetail> list = new ArrayList<>();
-        String sql = "SELECT o.pid,o.price,o.color,o.size,p.image,p.productName,od.status FROM OrderLine o INNER JOIN Product p   ON o.pid = p.productId inner join [Order] od ON od.id =o.oid  where od.username = ? ";
+        List<OrderDetail> list = new ArrayList<>();
+        String sql = "SELECT o.oid, o.pid,o.price,o.quantity,o.color,o.size,p.image,p.productName,od.status FROM OrderLine o INNER JOIN Product p   ON o.pid = p.productId inner join [Order] od ON od.id =o.oid  where od.username = ? ";
         try {
             PreparedStatement st = connection.prepareStatement(sql);
             st.setString(1, username);
-           
+
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                  OrderDetail p = new OrderDetail();
+                OrderDetail p = new OrderDetail();
                 p.setOid(rs.getInt("oid"));
-                p.setPID(rs.getString("pid"));
+                p.setPid(rs.getInt("pid"));
                 p.setPrice(rs.getFloat("price"));
+                p.setQuantity(rs.getInt("quantity"));
                 p.setColor(rs.getString("color"));
                 p.setSize(rs.getString("size"));
                 p.setImg(rs.getString("image"));
@@ -179,14 +183,77 @@ public class OrderDAO extends DBContext {
         } catch (Exception e) {
         }
         return list;
-        
+
     }
 
     public void deleteOrderLine(String oid, String pid) {
-        
-        
+        String sql = "delete from OrderLine where pid = ? and oid = ? ";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, pid);
+            ps.setString(2, oid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            
+        }
+
     }
-    
-    
+
+    public int getPriceDelete(String pid,String oid) {
+        
+        String sql = "select price from OrderLine where pid = ? and oid = ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, pid);
+            st.setString(2, oid);
+          
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+               return (rs.getInt("price"));
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public int getPriceOrder(String oid) {
+        String sql = "select totalmoney from [Order] where id= ?";
+        try {
+            PreparedStatement st = connection.prepareStatement(sql);
+            st.setString(1, oid);
+          
+            ResultSet rs = st.executeQuery();
+            while (rs.next()) {
+               return (rs.getInt("totalmoney"));
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public void deleteOrder(String oid) {
+        
+        String sql = "delete from OrderLine where id = ? ";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, oid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            
+        }
+    }
+     public void updateOrder(int result,String Oid) {
+        String query = "UPDATE [dbo].[Order]\n"
+                + "   SET [totalmoney] = ?\n"
+             
+                + " WHERE id = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, result);
+            ps.setString(2, Oid);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
 
 }

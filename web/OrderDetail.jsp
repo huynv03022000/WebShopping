@@ -59,7 +59,15 @@
                                                     <div class="cart_item_title">Color</div>
                                                     <div class="cart_item_text">
                                                         ${i.color}</div>
-                                                </div> <div class="cart_item_color cart_info_col">
+                                                        
+                                                </div>  
+                                                        <div class="cart_item_color cart_info_col">
+                                                    <div class="cart_item_title">Quantity</div>
+                                                    <div class="cart_item_text">
+                                                        ${i.quantity}</div>
+                                                        
+                                                </div>
+                                                        <div class="cart_item_color cart_info_col">
                                                     <div class="cart_item_title">Size</div>
                                                     <div class="cart_item_text">
                                                         ${i.size}</div>

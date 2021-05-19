@@ -69,10 +69,12 @@
             </div>
 
             <div class="bs-example">
-                <div class="btn-group">
+                  <div class="btn-group">
                     <button type="button" class="btn">
                         <a style="text-decoration: none" href="Home.jsp">Trang Chủ</a>
                     </button>
+                </div>
+                <div class="btn-group">
                     <!-- <button type="button" class="btn btn">Action</button> -->
                     <button type="button" class="btn btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
                         Áo Nam
@@ -80,8 +82,8 @@
                     <div class="dropdown-menu">
                         <a href="product?categori=1" class="dropdown-item">Sơ Mi</a>
                         <a class="dropdown-item" href="product?categori=2">Áo Phông</a>
-                        <a class="dropdown-item" href="#">Áo Phao</a>
-                        <a class="dropdown-item" href="#">Áo Thể Thao</a>
+                        <a class="dropdown-item" href="product?categori=3">Áo Phao</a>
+                        <a class="dropdown-item" href="product?categori=14">Áo Thể Thao</a>
                     </div>
                 </div>
                 <div class="btn-group">
@@ -90,9 +92,9 @@
                         Quần Nam
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="product?categori=2">Quần Bò</a>
-                        <a class="dropdown-item" href="product?categori=2">Quần Âu</a>
-                        <a class="dropdown-item" href="">Quần Joger</a>
+                        <a class="dropdown-item" href="product?categori=5">Quần Bò</a>
+                        <a class="dropdown-item" href="product?categori=4">Quần Âu</a>
+                        <a class="dropdown-item" href="product?categori=6">Quần Joger</a>
                     </div>
                 </div>
                 <div class="btn-group">
@@ -101,9 +103,9 @@
                         Giày
                     </button>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Giày Thể Thao</a>
-                        <a class="dropdown-item" href="#">Giày Da</a>
-                        <a class="dropdown-item" href="#">Giày Convert</a>
+                        <a class="dropdown-item" href="product?categori=7">Giày Thể Thao</a>
+                        <a class="dropdown-item" href="product?categori=8">Giày Da</a>
+                        <a class="dropdown-item" href="product?categori=10">Giày Convert</a>
                     </div>
                 </div>
                 <div class="btn-group">
@@ -112,9 +114,10 @@
                         Phụ Kiện
                     </button>
                     <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Thắt Lưng</a>
-                        <a href="#" class="dropdown-item">Đồng Hồ</a>
-                        <a href="#" class="dropdown-item">Vi Da</a>
+                          <a href="product?categori=11" class="dropdown-item">Vi Da</a>
+                        <a href="product?categori=12" class="dropdown-item">Thắt Lưng</a>
+                        <a href="product?categori=13" class="dropdown-item">Đồng Hồ</a>
+                      
                     </div>
                 </div>
                 <div class="btn-group">
