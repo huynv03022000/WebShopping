@@ -10,26 +10,160 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>-->
         <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <link href="Css/Home.css" rel="stylesheet" type="text/css"/>
-        <script src="HomeJS.js" type="text/javascript"></script>
+        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+        <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">-->
+        <!--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+        <!--        <link href="Css/Home.css" rel="stylesheet" type="text/css"/>
+                <script src="HomeJS.js" type="text/javascript"></script>-->
         <title>JSP Page</title>
     </head>
     <body> 
         <style>
-
             .btn-normal .pull-right{
                 background-color: #ccc;
                 height: 60px;
             }
+            body{
+                margin: 0 auto;
+                width: 99%;
+            }
+            .img-fluid {
+                height: 100px;
+            }
+            * {box-sizing: border-box;}
+
+            .img-zoom-container {
+                position: relative;
+            }
+
+            .img-zoom-lens {
+                position: absolute;
+                border: 1px solid #d4d4d4;
+                /*set the size of the lens:*/
+                width: 40px;
+                height: 40px;
+            }
+
+            .img-zoom-result {
+                border: 1px solid #d4d4d4;
+                /*set the size of the result div:*/
+                width: 300px;
+                height: 300px;
+            }
         </style>
-        <%@include file="header.jsp"%>
+        <div class="header-contact"style="width: 99%;">
+            <div class="col-12 text-center">
+                <p>Hotline Mua hàng: </p>
+                <span>0943189438</span>
+                <p> Hotline CSKH :</p>
+                <span>0943189438</span>
+                <p> Chat CSKH :</p>
+                <a href="https://www.facebook.com/huy.nguyenvan.7543653/">Facebok</a>
+                <a href="Admin.jsp">Admin</a>
+
+            </div>
+        </div>
+        <div class="header-center container">
+            <div class="header-center-img">
+                <div class="header-img">
+
+                    <img src="img/logo.png" alt=""/>
+                </div>
+                <div class="header-center-icon">
+                    <div class="header-control">
+                        <div class="laptop" >
+                            <a href="login">
+                                <i class="fas fa-user-circle"></i>
+                            </a>
+                            <div class="d-flex justify-content-center h-100">
+                                <div class="searchbar" >
+                                    <!--<form action="searchProduct">-->
+                                    <input class="search_input" type="text" id="searchInput" name="search" placeholder="Search...">
+                                    <a  class="search_icon" ><i  class="fas fa-search" onclick="search()"></i></a>
+                                    <!--<input type="submit" value="search">--> 
+                                    <!--</form>-->
+                                </div>
+                            </div>
+
+                            <a href="addCart" class="icon-cart position-relative">
+                                <i class="fas fa-shopping-bag"></i>
+                                <span class="count-cart">
+                                </span>
+                            </a>
+                        </div>
+                        <a href="" class="icon-menu-mobile d-lg-none">
+                            <i class="fas fa-bars"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bs-example" style="width: 99%">
+                <div class="btn-group">
+                    <button type="button" class="btn">
+                        <a style="text-decoration: none" href="Home.jsp">Trang Chủ</a>
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <!-- <button type="button" class="btn btn">Action</button> -->
+                    <button type="button" class="btn btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                        Áo Nam
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="product?categori=1" class="dropdown-item">Sơ Mi</a>
+                        <a class="dropdown-item" href="product?categori=2">Áo Phông</a>
+                        <a class="dropdown-item" href="product?categori=3">Áo Phao</a>
+                        <a class="dropdown-item" href="product?categori=14">Áo Thể Thao</a>
+                    </div>
+                </div>
+                <div class="btn-group">
+
+                    <button type="button" class="btn btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                        Quần Nam
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="product?categori=5">Quần Bò</a>
+                        <a class="dropdown-item" href="product?categori=4">Quần Âu</a>
+                        <a class="dropdown-item" href="product?categori=6">Quần Joger</a>
+                    </div>
+                </div>
+                <div class="btn-group">
+
+                    <button type="button" class="btn btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                        Giày
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="product?categori=7">Giày Thể Thao</a>
+                        <a class="dropdown-item" href="product?categori=8">Giày Da</a>
+                        <a class="dropdown-item" href="product?categori=10">Giày Convert</a>
+                    </div>
+                </div>
+                <div class="btn-group">
+
+                    <button type="button" class="btn btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+                        Phụ Kiện
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="product?categori=11" class="dropdown-item">Vi Da</a>
+                        <a href="product?categori=12" class="dropdown-item">Thắt Lưng</a>
+                        <a href="product?categori=13" class="dropdown-item">Đồng Hồ</a>
+
+                    </div>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn " data-toggle="dropdown">
+                        Bộ Thể Thao
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="pn">
+            <h1>${requestScope.mes}</h1>
+        </div>
         <section class="mb-5">
             <form name="f" action="" method="post">
                 <div class="row">
@@ -41,42 +175,43 @@
 
                             <div class="row product-gallery mx-1">
 
-                                <div class="col-12 mb-0" style="margin-bottom: 100px">
+                                <div class="col-12 mb-0" style="margin-bottom: 100px"  class="img-zoom-container">
                                     <figure class="view overlay rounded z-depth-1 main-img">
                                         <a href="${requestScope.img.img1}"
                                            data-size="710x823">
-                                            <img src="${requestScope.img.img1}"
+                                            <img src="${requestScope.img.img1}" id="myimage" style="height: 500px;width: 600px"
                                                  class="img-fluid z-depth-1">
                                         </a>
+                                                 <div id="myresult" class="img-zoom-result"></div>
                                     </figure>
 
                                 </div>
-                                <div class="col-12" style="margin-top 100px">
-                                    <div class="row">
-                                        <div class="col-3">
+                                <div class="col-12" style="margin-top:100px">
+                                    <div class="row"  class="img-zoom-container">
+                                        <div class="col-3" >
                                             <div class="view overlay rounded z-depth-1 gallery-item">
-                                                <img src="${requestScope.img.img1}"
+                                                <img src="${requestScope.img.img1}" style="height: 300px;" id="myresult"
                                                      class="img-fluid">
                                                 <div class="mask rgba-white-slight"></div>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="view overlay rounded z-depth-1 gallery-item">
-                                                <img src="${requestScope.img.img2}"
+                                                <img src="${requestScope.img.img2}" style="height: 300px;"id="myresult"
                                                      class="img-fluid">
                                                 <div class="mask rgba-white-slight"></div>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="view overlay rounded z-depth-1 gallery-item">
-                                                <img src="${requestScope.img.img3}"
+                                                <img src="${requestScope.img.img3}" style="height: 300px;"id="myresult"
                                                      class="img-fluid">
                                                 <div class="mask rgba-white-slight"></div>
                                             </div>
                                         </div>
                                         <div class="col-3">
                                             <div class="view overlay rounded z-depth-1 gallery-item">
-                                                <img src="${requestScope.img.img4}"
+                                                <img src="${requestScope.img.img4}" style="height: 300px;"id="myresult"
                                                      class="img-fluid">
                                                 <div class="mask rgba-white-slight"></div>
                                             </div>
@@ -137,11 +272,9 @@
                                     <tr>
                                         <td class="pl-0">
                                             <div class="def-number-input number-input safari_only mb-0">
-                                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                                                        class="minus"></button>
+
                                                 <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                                                        class="plus"></button>
+
                                             </div>
                                         </td>
                                         <td>
@@ -258,52 +391,106 @@
             </div>
 
         </div>
-                                  <hr>
-                <hr>
-                <h1 style="margin-left: 40%">Sản Phẩm Liên Quan</h1>
-                <hr>
-                <hr>
-        <div class="container">
-            <div class="row">
-              
-                <c:forEach items="${list1}" var="o">
-                    <div class="col-md-3 col-sm-6">
-                        <div class="product-grid3">
-                            <div class="product-image3">
-                                <a href="detail?id=${o.id}&&categori=${o.CID}">
-                                    <img class="pic-1"src="${o.img}" alt=""/>
-                                    <img class="pic-2" src="${o.img}" alt=""/>
-                                </a>
-                                <ul class="social">
-                                    <li><a href="detail?id=${o.id}&&categori=${o.CID}"><i class="fa fa-shopping-bag"></i></a></li>
-                                    <li><a href="detail?id=${o.id}&&categori=${o.CID}"><i class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                                <span class="product-new-label">${o.id}</span>
-                            </div>
-                            <div class="product-content">
-                                <h3 class="title"><a href="#">${o.name}</a></h3>
-                                <div class="price">
-                                    ${o.price}
-                                    <span>${o.price*1.2} VND</span>
-                                </div>
-                                <ul class="rating">
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star"></li>
-                                    <li class="fa fa-star disable"></li>
-                                    <li class="fa fa-star disable"></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>  
-                </c:forEach>
-
-
-            </div>
+        <hr>
+        <hr>
+        <h1 style="margin-left: 40%">Sản Phẩm Liên Quan</h1>
+        <hr>
+        <hr>
+        <%@include file="slider.jsp"%>
+        <!--        <div class="container">
+                    <div class="row">
+                      
+        <c:forEach items="${list1}" var="o">
+            <div class="col-md-3 col-sm-6">
+                <div class="product-grid3">
+                    <div class="product-image3">
+                        <a href="detail?id=${o.id}&&categori=${o.CID}">
+                            <img class="pic-1"src="${o.img}" alt=""/>
+                            <img class="pic-2" src="${o.img}" alt=""/>
+                        </a>
+                        <ul class="social">
+                            <li><a href="detail?id=${o.id}&&categori=${o.CID}"><i class="fa fa-shopping-bag"></i></a></li>
+                            <li><a href="detail?id=${o.id}&&categori=${o.CID}"><i class="fa fa-shopping-cart"></i></a></li>
+                        </ul>
+                        <span class="product-new-label">${o.id}</span>
+                    </div>
+                    <div class="product-content">
+                        <h3 class="title"><a href="#">${o.name}</a></h3>
+                        <div class="price">
+            ${o.price}
+            <span>${o.price*1.2} VND</span>
         </div>
-        <!-- Classic tabs -->
-        <%@include file="footer.jsp"%>
+        <ul class="rating">
+            <li class="fa fa-star"></li>
+            <li class="fa fa-star"></li>
+            <li class="fa fa-star"></li>
+            <li class="fa fa-star disable"></li>
+            <li class="fa fa-star disable"></li>
+        </ul>
+    </div>
+</div>
+</div>  
+        </c:forEach>
 
+
+    </div>
+</div>-->
+        <!-- Classic tabs -->
+
+       <section id="footer" style="width :100%">
+            <div class="container">
+                <div class="row text-center text-xs-center text-sm-left text-md-left">
+                    <div class="col-xs-12 col-sm-3 col-md-4">
+                        <h5>Customer Policy</h5>
+                        <ul class="list-unstyled quick-links">
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Company</a></li>
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>About</a></li>
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-4">
+                        <h5>Company</h5>
+                        <ul class="list-unstyled quick-links">
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Customer Policy</a></li>
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>About</a></li>
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Videos</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-3 col-md-4">
+                        <h5>Shop system</h5>
+                        <ul class="list-unstyled quick-links">
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Shop system</a></li>
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>About</a></li>
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>FAQ</a></li>
+                            <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Get Started</a></li>
+                            <li><a href="https://wwwe.sunlimetech.com" title="Design and developed by"><i class="fa fa-angle-double-right"></i>Imprint</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+                        <ul class="list-unstyled list-inline social text-center">
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-instagram"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02"><i class="fab fa-google-plus"></i></a></li>
+                            <li class="list-inline-item"><a href="https://www.fiverr.com/share/qb8D02" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                        </ul>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+                        <p><u><a href="https://www.nationaltransaction.com/">National Transaction Corporation</a></u>COPPYING</p>
+                        <p class="h6">© All right Reversed.<a class="text-green ml-2" href="https://www.sunlimetech.com" target="_blank">Sunlimetech</a></p>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </section>
         <script type="text/javascript">
             function addCart(id) {
                 var x = document.getElementById('color').value;
@@ -320,6 +507,98 @@
                 document.f.action = "addCart?id=" + id + "&&color=" + x + "&&size=" + rate_value;
                 document.f.submit();
             }
+            window.addEventListener('keyup', (e) => {
+                keys.forEach((obj) => {
+                    if (obj.keyCode === e.code) {
+                        obj.isTriggered = false;
+                    }
+                });
+            });
+
+
+            //// When the user clicks on the button, scroll to the top of the document
+
+            $(document).ready(function () {
+                $(window).scroll(function () {
+                    if ($(document).scrollTop() > 50) {
+                        $(".header-contact").addClass("scrol");
+                    } else {
+                        $(".header-contact").removeClass("scrol");
+                    }
+                });
+            });
+
+            function search() {
+                var result = document.getElementById("searchInput").value;
+                var url = "searchProduct?search=" + result;
+                window.location.href = url;
+                console.log(url);
+
+            }
+            function imageZoom(imgID, resultID) {
+                var img, lens, result, cx, cy;
+                img = document.getElementById(imgID);
+                result = document.getElementById(resultID);
+                /*create lens:*/
+                lens = document.createElement("DIV");
+                lens.setAttribute("class", "img-zoom-lens");
+                /*insert lens:*/
+                img.parentElement.insertBefore(lens, img);
+                /*calculate the ratio between result DIV and lens:*/
+                cx = result.offsetWidth / lens.offsetWidth;
+                cy = result.offsetHeight / lens.offsetHeight;
+                /*set background properties for the result DIV:*/
+                result.style.backgroundImage = "url('" + img.src + "')";
+                result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+                /*execute a function when someone moves the cursor over the image, or the lens:*/
+                lens.addEventListener("mousemove", moveLens);
+                img.addEventListener("mousemove", moveLens);
+                /*and also for touch screens:*/
+                lens.addEventListener("touchmove", moveLens);
+                img.addEventListener("touchmove", moveLens);
+                function moveLens(e) {
+                    var pos, x, y;
+                    /*prevent any other actions that may occur when moving over the image:*/
+                    e.preventDefault();
+                    /*get the cursor's x and y positions:*/
+                    pos = getCursorPos(e);
+                    /*calculate the position of the lens:*/
+                    x = pos.x - (lens.offsetWidth / 2);
+                    y = pos.y - (lens.offsetHeight / 2);
+                    /*prevent the lens from being positioned outside the image:*/
+                    if (x > img.width - lens.offsetWidth) {
+                        x = img.width - lens.offsetWidth;
+                    }
+                    if (x < 0) {
+                        x = 0;
+                    }
+                    if (y > img.height - lens.offsetHeight) {
+                        y = img.height - lens.offsetHeight;
+                    }
+                    if (y < 0) {
+                        y = 0;
+                    }
+                    /*set the position of the lens:*/
+                    lens.style.left = x + "px";
+                    lens.style.top = y + "px";
+                    /*display what the lens "sees":*/
+                    result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+                }
+                function getCursorPos(e) {
+                    var a, x = 0, y = 0;
+                    e = e || window.event;
+                    /*get the x and y positions of the image:*/
+                    a = img.getBoundingClientRect();
+                    /*calculate the cursor's x and y coordinates, relative to the image:*/
+                    x = e.pageX - a.left;
+                    y = e.pageY - a.top;
+                    /*consider any page scrolling:*/
+                    x = x - window.pageXOffset;
+                    y = y - window.pageYOffset;
+                    return {x: x, y: y};
+                }
+            }
+            imageZoom("myimage", "myresult");
         </script> 
 
     </body>

@@ -121,9 +121,9 @@
                                                 </div>
                                                 <div class="cart_item_quantity cart_info_col">
                                                     <div class="cart_item_title">Quantity</div>
-                                                    <button><a href="process?num=-1&id=${i.product.id}">-</a></button>
+                                               <a href="process?num=-1&id=${i.product.id}"><i class="fas fa-minus"></i></a>
                                                     <input type="text" readonly  value="${i.quantity}"/>
-                                                    <button><a href="process?num=1&id=${i.product.id}">+</a></button>
+                                                   <a href="process?num=1&id=${i.product.id}"><i class="fas fa-plus"></i></a>
 <!--                                                    <div class="cart_item_text">${i.quantity}</div>-->
                                                 </div>
                                                 <div class="cart_item_price cart_info_col">
@@ -132,7 +132,7 @@
                                                 </div>
 
                                                 <div class="cart_item_delete cart_info_col">
-                                                    <div class="cart_item_title"><a href="process?num=-1&id=${i.product.id}"><i class="fas fa-times"></i></a></div>
+                                                    <div class="cart_item_title"><a href="process?num=-2&id=${i.product.id}"><i class="fas fa-times"></i></a></div>
 
                                                 </div>
                                             </div>

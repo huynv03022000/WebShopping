@@ -24,10 +24,23 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <style>
+            .col-md-3{
+                width: 33%;
+            }
+            .text-xs-center{
+               
+                width: 1000px
+            }
+          
+            .row .text-center .text-xs-center .text-sm-left .text-md-left{
+        margin-left: 300px
+            }
+        </style>
         <section id="footer" style="width :100%">
-            <div class="container">
-                <div class="row text-center text-xs-center text-sm-left text-md-left">
-                    <div class="col-xs-12 col-sm-4 col-md-4">
+            <div class="container" style="width :100%">
+                <div class="row text-center text-xs-center text-sm-left text-md-left" style="width :100%">
+                    <div class="col-xs-12 col-sm-3 col-md-3">
                         <h5>Customer Policy</h5>
                         <ul class="list-unstyled quick-links">
                             <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Company</a></li>
@@ -36,7 +49,7 @@
 
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-4 col-md-4">
+                    <div class="col-xs-12 col-sm-3 col-md-3">
                         <h5>Company</h5>
                         <ul class="list-unstyled quick-links">
                             <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Customer Policy</a></li>
@@ -46,7 +59,7 @@
                             <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Videos</a></li>
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-4 col-md-4">
+                    <div class="col-xs-12 col-sm-3 col-md-3">
                         <h5>Shop system</h5>
                         <ul class="list-unstyled quick-links">
                             <li><a href="https://www.fiverr.com/share/qb8D02"><i class="fa fa-angle-double-right"></i>Shop system</a></li>

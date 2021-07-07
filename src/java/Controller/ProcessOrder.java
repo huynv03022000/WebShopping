@@ -62,7 +62,7 @@ public class ProcessOrder extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-           response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("utf-8");
         HttpSession session = request.getSession(true);
         Cart cart = null;
@@ -74,21 +74,53 @@ public class ProcessOrder extends HttpServlet {
             cart = new Cart();
         }
         String tnum = request.getParameter("num").trim();
+//        int quantity = Integer.parseInt(request.getParameter("quantity").trim());
+
         String tid = request.getParameter("id");
         String color = request.getParameter("color");
         String size = request.getParameter("size");
-        int id, num=-1;
+        //       int id, check = -1;
+//        int sum = 0;
+//        try {
+//            id = Integer.parseInt(tid);
+//            check = Integer.parseInt(tnum);          
+//            if ((check == -1) && (cart.getQuantityById(id) >= 1) && quantity == 1) {
+//                cart.removeItem(id);
+//            } else {
+//                if (check == -1 && (cart.getQuantityById(id) >= 1)) {
+//                    ProductDAO pdb = new ProductDAO();
+//                    Product p = pdb.getProductById(tid);
+//                    double price = p.getPrice();
+//                    Item t = new Item(p, check, color, size, price);
+//                    cart.addItem(t);
+//                } else {
+//                    ProductDAO pdb = new ProductDAO();
+//                    Product p = pdb.getProductById(tid);
+//                    double price = p.getPrice();
+//                    Item t = new Item(p, check, color, size, price);
+//                    cart.addItem(t);
+//                }
+//
+//            }
+//        } catch (NumberFormatException e) {
+//            System.out.println(e);
+//        }
+        int id, num;
+
         try {
             id = Integer.parseInt(tid);
             num = Integer.parseInt(tnum);
-            if ((num == -1) && (cart.getQuantityById(id) >= 1)) {
+            if ((num == -1) && (cart.getQuantityById(id) <= 1)) {
+                cart.removeItem(id);
+            }
+            if ((num == -2)) {
                 cart.removeItem(id);
             } else {
-               ProductDAO pdb=new ProductDAO();
-               Product p=pdb.getProductById(tid);
-               double price=p.getPrice();
-               Item t=new Item(p,num,color,size, price);  
-               cart.addItem(t);
+                ProductDAO pdb = new ProductDAO();
+                Product p = pdb.getProductById(tid);
+                double price = p.getPrice();
+                Item t = new Item(p, num, color, size, price);
+                cart.addItem(t);
             }
         } catch (NumberFormatException e) {
             System.out.println(e);

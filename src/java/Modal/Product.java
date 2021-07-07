@@ -18,7 +18,7 @@ public class Product {
     private String describer;
     String img ;
     private boolean status;
-       private int quantity;
+    private int quantity;
 //    private int quantity;
 
     public Product() {

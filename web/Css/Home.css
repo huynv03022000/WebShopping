@@ -496,3 +496,50 @@ img{
     -o-background-size: cover;
     background-size: cover;
 }
+
+
+
+
+@media (max-width: 576px) {
+    .row2 {
+        flex-direction: column;
+    }
+    .row3 {
+        /* flex word  là thuộc tính khi dung display flex mà vẫn muốn chiều dai tuyd chỉnh */
+        flex-wrap: wrap;
+    }
+    .row2-col2 {
+        width: 100%;
+    }
+    .row2-col1 {
+        width: 100%;
+    }
+    .row3-col1 {
+        width: 100%;
+    }
+    .row3-col2 {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+
+}
+
+@media (min-width: 576px) {}
+
+@media (max-width: 768px) {
+    .laptop {
+        display: none;
+    }
+}
+
+@media (min-width: 992px) {
+
+}
+
+@media (min-width: 1140px) {  .col-md-4 {
+                                  max-width: 20%;
+                              }}
+
+@media (min-width: 1400px) {}

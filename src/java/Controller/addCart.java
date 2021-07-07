@@ -117,7 +117,6 @@ public class addCart extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         HttpSession session = request.getSession(true);
         Cart cart = null;
-
         Object o = session.getAttribute("cart");
 //        Cookie cuser = new Cookie("userAd", name);
         //co roi
@@ -126,13 +125,13 @@ public class addCart extends HttpServlet {
         } else {
             cart = new Cart();
         }
-        String tnum = request.getParameter("quantity");
+        String quantity = request.getParameter("quantity");
         String tid = request.getParameter("id");
         String color = request.getParameter("color");
         String size = request.getParameter("size");
         int num, id;
         try {
-            num = Integer.parseInt(tnum);
+            num = Integer.parseInt(quantity);
             ProductDAO pdb = new ProductDAO();
             Product p = pdb.getProductById(tid);
             double price = p.getPrice();

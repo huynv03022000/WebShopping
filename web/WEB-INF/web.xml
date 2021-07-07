@@ -72,6 +72,10 @@
         <servlet-name>removeProduct</servlet-name>
         <servlet-class>Controller.removeProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>signup</servlet-name>
+        <servlet-class>Controller.signup</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>product</servlet-name>
         <url-pattern>/product</url-pattern>
@@ -144,9 +148,15 @@
         <servlet-name>removeProduct</servlet-name>
         <url-pattern>/removeProduct</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>signup</servlet-name>
+        <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+   
+
 </web-app>

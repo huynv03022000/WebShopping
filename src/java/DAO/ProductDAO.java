@@ -387,7 +387,6 @@ public class ProductDAO extends DBContext {
         return null;
     }
 
-   
     public void UpdateProduct(Product p) {
         String query = "UPDATE Product\n"
                 + "   SET [productIdType] = ?\n"
@@ -448,32 +447,32 @@ public class ProductDAO extends DBContext {
     }
 
     public void deleteProduct(String id) {
-          String sql1 = "delete from Color where productid = ? ";
+        String sql1 = "delete from Color where productid = ? ";
         try {
             PreparedStatement ps = connection.prepareStatement(sql1);
             ps.setString(1, id);
             ps.executeUpdate();
         } catch (Exception e) {
         }
-         String sql2 = "delete from Image where productId = ? ";
+        String sql2 = "delete from Image where productId = ? ";
         try {
             PreparedStatement ps = connection.prepareStatement(sql2);
             ps.setString(1, id);
             ps.executeUpdate();
         } catch (Exception e) {
         }
-         String sql = "delete from Product where productId = ? ";
+        String sql = "delete from Product where productId = ? ";
         try {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, id);
             ps.executeUpdate();
         } catch (Exception e) {
         }
-       
+
     }
 
     public String getNameOfcate(String categori) {
-         String query = "select categoriesName from Categories where categoriesId = ?";
+        String query = "select categoriesName from Categories where categoriesId = ?";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, categori);
@@ -487,10 +486,10 @@ public class ProductDAO extends DBContext {
     }
 
     public int getMaxID() {
-         String query = "SELECT MAX(productId) FROM Product; ";
+        String query = "SELECT MAX(productId) FROM Product; ";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
-           
+
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
@@ -498,6 +497,15 @@ public class ProductDAO extends DBContext {
         } catch (Exception e) {
         }
         return 0;
+    }
+
+    public String getColor(String color) {
+        if (color.equals("null") || color.equals("")) {
+            return "hrlllo";
+        } else {
+            String co = "<option value=" + color + ">" + color + "</option>";
+            return co;
+        }
     }
 
 }

@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-           <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -20,6 +20,7 @@
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
         <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      
         <link href="Css/Home.css" rel="stylesheet" type="text/css"/>
         <script src="HomeJS.js" type="text/javascript"></script>
         <title>JSP Page</title>
@@ -27,6 +28,11 @@
     <body>
         <%@include file="header.jsp"%>
         <style>
+             @media (min-width: 1200px) {
+                 .row .col-md-4 {
+                    max-width: 20%;
+                }
+            }
             .product-grid3 .product-image3 img{
                 border-radius: 20px; 
                 width: 280px;
@@ -35,14 +41,15 @@
             .col-sm-3{
                 margin-bottom: 50px;
             }
+           
         </style>
-        <div class="container">
+        <div class="container-fluid">
             <hr>
             <h3 style="margin-left: 45%;font-size: 40px" class="h3">  ${requestScope.Mes} </h3>
             <div class="row">
 
                 <c:forEach items="${list}" var="o">
-                    <div class="col col-sm-3">
+                    <div class="card text-center col-12 col-sm-6 col-md-4 col-lg-3">
                         <div class="product-grid3">
                             <div class="product-image3">
                                 <a href="detail?id=${o.id}&&categori=${o.CID}">
@@ -92,7 +99,7 @@
                     background-color: #ccffcc;
                     text-align: center;
                     margin-top: 5px;
-                    color: white;"class=""><a style="width: 30px;height: 30px" href="product?page=<%= j%>"><%= j%></a></li>
+                    color: white;"class=""><a style="width: 30px;height: 30px" href="product?page=<%= j%>&&categori=${categori}"><%= j%></a></li>
                     <%
                         }
                     %>
@@ -101,7 +108,7 @@
             </ul>
         </div>
         <hr>
-        
-         <%@include file="footer.jsp"%>
+
+        <%@include file="footer.jsp"%>
     </body>
 </html>

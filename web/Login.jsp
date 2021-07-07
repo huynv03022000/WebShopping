@@ -35,17 +35,17 @@
                                 <div class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="https://i.imgur.com/uNGdWHi.png" class="image"> </div>
                             </div>
                         </div>
-   <%
-                        Cookie[] list = request.getCookies();
-                        String rem = "";
-                        if (list.length != 0) {
-                            for (int i = 0; i < list.length; i++) {
-                                if (list[i].getName().equals("rem")) {
-                                    rem = list[i].getValue();
+                        <%
+                            Cookie[] list = request.getCookies();
+                            String rem = "";
+                            if (list.length != 0) {
+                                for (int i = 0; i < list.length; i++) {
+                                    if (list[i].getName().equals("rem")) {
+                                        rem = list[i].getValue();
+                                    }
                                 }
                             }
-                        }
-                    %>
+                        %>
                         <div class="col-lg-6">
                             <div class="card2 card border-0 px-4 py-5">
                                 <div class="row mb-4 px-3">
@@ -87,6 +87,8 @@
                 </div>
             </div>
         </form>
+
+       
         <%@include file="footer.jsp"%>
     </body>
 </html>

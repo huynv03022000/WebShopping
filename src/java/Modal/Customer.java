@@ -11,35 +11,33 @@ package Modal;
  */
 public class Customer {
     private int id;
-    private String name ,password,phone,role;
+    private String name ,password,phone;
+    private boolean role;
+   private String email;
 
     public Customer() {
     }
 
-    public Customer( String name, String password, String phone, String role) {
-       
+    public Customer( String name, String password, String phone, boolean role, String email) {
+      
         this.name = name;
         this.password = password;
         this.phone = phone;
         this.role = role;
+        this.email = email;
+        
     }
 
-    public Customer(int id, String name, String password, String phone, String role) {
+    public Customer(int id, String name, String password, String phone, boolean role, String email) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.phone = phone;
+        this.email = email;
         this.role = role;
     }
     
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    
 
     public String getName() {
         return name;
@@ -65,14 +63,23 @@ public class Customer {
         this.phone = phone;
     }
 
-    public String getRole() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public boolean isRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(boolean role) {
         this.role = role;
     }
     
-    
+
+   
     
 }

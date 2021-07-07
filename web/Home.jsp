@@ -24,7 +24,7 @@
     <body>
         <%@include file="header.jsp"%>
         <header>
-            <div id="carouselExampleIndicators" class="carousel slide container" data-ride="carousel">
+            <div id="carouselExampleIndicators" class="carousel slide container" data-ride="carousel" data-interval="1000">
                 <ol class="carousel-indicators">
                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>

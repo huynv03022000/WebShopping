@@ -66,7 +66,7 @@ public class product extends HttpServlet {
         ProductDAO p = new ProductDAO();
         List<Product> list = p.getData(cate);
         int numPs = list.size();
-        int numperPage = 12;
+        int numperPage = 10;
         int numpage = numPs / numperPage + (numPs % numperPage == 0 ? 0 : 1);
         int start, end;
         String tpage = request.getParameter("page");
@@ -85,8 +85,9 @@ public class product extends HttpServlet {
         List<Product> arr = p.getListByPage(list, start, end);
         //so phan tu cua 1 trang
         request.setAttribute("list", arr);
-        String mes = "Sơ Mi";
-        request.setAttribute("Mes", mes);
+        request.setAttribute("categori", categori);
+//        String mes = "Sơ Mi";
+//        request.setAttribute("Mes", mes);
         request.setAttribute("num", numpage);
         request.getRequestDispatcher("Product.jsp").
                 forward(request, response);

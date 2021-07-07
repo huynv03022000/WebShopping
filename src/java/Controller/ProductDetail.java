@@ -84,8 +84,13 @@ public class ProductDetail extends HttpServlet {
          Product p = dao.getProductById(id);
 //        Modal.ProductDetail pt= dao.getPRoductDetail(p.getId());  
         Image listImg = dao.getListImg(p.getId());
-         Color color = dao.getListColor(p.getId());
-         
+         Color c = dao.getListColor(p.getId());
+//        String c1 = dao.getColor(c.getColor1());
+//        String c2 = dao.getColor(c.getColor2());
+//        String c3 = dao.getColor(c.getColor3());
+//        String c4 = dao.getColor(c.getColor4());
+//        String c5 = dao.getColor(c.getColor5());
+//         Color colorAter = new Color(c1,c2,c3,c4,c5);
            String categori = request.getParameter("categori");
         int cate = Integer.parseInt(categori);
         List<Product> list1 = dao.getData(cate);
@@ -113,7 +118,7 @@ public class ProductDetail extends HttpServlet {
          request.setAttribute("product", p);
 //         request.setAttribute("productdetail", pt);
          request.setAttribute("img", listImg);
-         request.setAttribute("color", color);
+         request.setAttribute("color", c);
          request.setAttribute("list", listComment);
          String mes ="";
          request.setAttribute("id", id);
